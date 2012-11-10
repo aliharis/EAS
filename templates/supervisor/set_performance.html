@@ -1,0 +1,205 @@
+<?php require TEMPLATES_PATH . '_header.html'; ?>
+
+			<div class="screen_full">
+				<ul class="mini_nav">
+					<li><a href="<?php echo HOST; ?>/index.php" class="active">Assigned Tasks</a></li>
+					<li><a href="<?php echo HOST; ?>/index.php?act=performance">Performance</a></li>
+				</ul>
+			</div>
+
+			<div class="emp_details">
+				EMPID: <?php echo $TVAR['employee']['emp_id']; ?>
+				<span class="name"><?php echo $TVAR['employee']['firstname'] . " " . $TVAR['employee']['lastname']; ?></span>
+				<?php echo $Department->getTitle($TVAR['employee']['emp_id']); ?>
+				</div>
+
+			<div class="list_ext" style="margin-top:30px;">
+
+				<h1>Category A: <?php print_r($Category->get("CAT A")); ?></h1>
+
+				<table width="870" class="list_view">
+					<tr>
+						<th>Description</th>
+						<th>Rate</th>
+					</tr>
+					<?php foreach($TVAR['CAT_A'] as $cat): extract($cat);?>
+					<tr>
+						<td><?php echo $description; ?></td>
+						<td width="250">
+							<select name="<?php echo $subcat_id; ?>">
+								<option><?php echo $TVAR["CAT_A_SUB_AVG"]["subcat_$subcat_id"]; ?></option>
+							</select>
+						</td>
+					</tr>
+					<?php endforeach;?>
+					<tr>
+						<td colspan="2" style="background: none;">
+							<div class="right" style="width: 500px; text-align: right; padding-right: 45px;">
+								<div>
+									Total: <input type="text" readonly="readonly" name="total" style="width: 50px; margin-right: 30px;" value="<?php echo $TVAR["CAT_A_SUB_AVG"]['total']; ?>" />
+									Percentage: <input type="text" name="percentage" style="width: 50px;" value="<?php echo $TVAR["CAT_A_SUB_AVG"]['percentage']; ?>" readonly="readonly" />
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+
+				<h1>Category B: <?php print_r($Category->get("CAT B")); ?></h1>
+
+				<form id="cat-b-form">
+				<table width="870" class="list_view">
+					<tr>
+						<th>Description</th>
+						<th>Rate</th>
+					</tr>
+					<?php foreach($TVAR['CAT_B'] as $cat): extract($cat);?>
+					<tr>
+						<td><?php echo $description; ?></td>
+						<td width="250">
+							<select name="<?php echo $subcat_id; ?>" class="cat-b-select">
+								<option>0</option>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</select>
+						</td>
+					</tr>
+					<?php endforeach;?>
+					<tr>
+						<td colspan="2" style="background: none;">
+							<div class="right" style="width: 500px; text-align: right; padding-right: 45px;">
+								<div>
+									Total: <input type="text" name="total" style="width: 50px; margin-right: 30px;" class="cat-b-total" />
+									Percentage: <input type="text" name="percentage" style="width: 50px;" class="cat-b-percentage" />
+									<input type="hidden" name="percentage-allocated" style="width: 50px;" class="cat-b-percentage-allocated" value="<?php echo $Category->getPercentage("CAT B"); ?>" />
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+				</form>	
+
+				<h1>Category C: <?php print_r($Category->get("CAT C")); ?></h1>
+
+				<form id="cat-c-form">
+				<table width="870" class="list_view">
+					<tr>
+						<th>Description</th>
+						<th>Rate</th>
+					</tr>
+					<?php foreach($TVAR['CAT_C'] as $cat): extract($cat);?>
+					<tr>
+						<td><?php echo $description; ?></td>
+						<td width="250">
+							<select name="<?php echo $subcat_id; ?>" class="cat-c-select">
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</select>
+						</td>
+					</tr>
+					<?php endforeach;?>
+					<tr>
+						<td colspan="2" style="background: none;">
+							<div class="right" style="width: 500px; text-align: right; padding-right: 45px;">
+								<div>
+									Total: <input type="text" name="total" style="width: 50px; margin-right: 30px;" class="cat-c-total" />
+									Percentage: <input type="text" name="percentage" style="width: 50px;" class="cat-c-percentage" />
+									<input type="hidden" name="percentage-allocated" style="width: 50px;" class="cat-c-percentage-allocated" value="<?php echo $Category->getPercentage("CAT C"); ?>" />
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+				</form>
+
+				<h1>Category D: <?php print_r($Category->get("CAT D")); ?></h1>
+
+				<form id="cat-d-form">
+				<table width="870" class="list_view">
+					<tr>
+						<th>Description</th>
+						<th>Rate</th>
+					</tr>
+					<?php foreach($TVAR['CAT_D'] as $cat): extract($cat);?>
+					<tr>
+						<td><?php echo $description; ?></td>
+						<td width="250">
+							<select name="<?php echo $subcat_id; ?>" class="cat-d-select"> 
+								<option>0</option>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</select>
+						</td>
+					</tr>
+					<?php endforeach;?>
+					<tr>
+						<td colspan="2" style="background: none;">
+							<div class="right" style="width: 500px; text-align: right; padding-right: 45px;">
+								<div>
+									Total: <input type="text" name="total" style="width: 50px; margin-right: 30px;" class="cat-d-total" />
+									Percentage: <input type="text" name="percentage" style="width: 50px;" class="cat-d-percentage" />
+									<input type="hidden" name="percentage-allocated" style="width: 50px;" class="cat-d-percentage-allocated" value="<?php echo $Category->getPercentage("CAT C"); ?>" />
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+				</form>
+
+				<h1>Category E: <?php print_r($Category->get("CAT E")); ?></h1>
+
+				<form id="cat-e-form">
+				<table width="870" class="list_view">
+					<tr>
+						<th>Description</th>
+						<th>Rate</th>
+					</tr>
+					<?php foreach($TVAR['CAT_E'] as $cat): extract($cat);?>
+					<tr>
+						<td><?php echo $description; ?></td>
+						<td width="250">
+							<select name="<?php echo $subcat_id; ?>" class="cat-e-select">
+								<option>0</option>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</select>
+						</td>
+					</tr>
+					<?php endforeach;?>
+					<tr>
+						<td colspan="2" style="background: none;">
+							<div class="right" style="width: 500px; text-align: right; padding-right: 45px;">
+								<div>
+									Total: <input type="text" name="total" style="width: 50px; margin-right: 30px;" class="cat-e-total" />
+									Percentage: <input type="text" name="percentage" style="width: 50px;" class="cat-e-percentage" />
+									<input type="hidden" name="percentage-allocated" style="width: 50px;" class="cat-e-percentage-allocated" value="<?php echo $Category->getPercentage("CAT D"); ?>" />
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+				</form>
+
+			</div>
+
+			<div class="clearfix"></div>
+
+			<hr />
+
+		</div>
+
+	</div> <!-- /wrapper -->
+
+</body>
+</html>

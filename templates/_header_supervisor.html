@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Dashboard &ndash; Employee Appraisal Software</title>
+	<link rel="stylesheet" href="<?php echo HOST; ?>/templates/stylesheets/app.css">
+	<script src="<?php echo HOST; ?>/templates/javascripts/jquery.js"></script>
+	<script src="<?php echo HOST; ?>/templates/javascripts/app.js"></script>
+</head>
+<body>
+
+	<div class="wrapper radius10">
+
+		<div class="container">
+			<header>
+				<div class="user_stat">
+					You are logged in as <?php echo $_SESSION['username'];?> <br /> <span><a href="<?php echo HOST; ?>logout.php">Logout</a></span>
+				</div>
+
+				<h1>Admin Control Panel</h1>
+			</header>

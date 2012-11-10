@@ -1,0 +1,77 @@
+<?php require TEMPLATES_PATH . '_header.html'; ?>
+
+			<div class="sidebar">
+				<?php require TEMPLATES_PATH . 'admin/sidebar.html'; ?>
+			</div>
+
+			<div class="screen">
+
+				<?php if (isset($_GET['msg'])): ?>
+				<div class="msg">
+					<?php echo $_GET['msg']; ?> [<a href="#" class="close_msg">close</a>]
+				</div>
+				<?php endif; ?>
+
+				<div class="clearfix"></div>
+
+				<table class="list_view" width="630">
+					<tr>
+						<td width="120">National ID:</td>
+						<td><?php echo $TVAR['employee']['nationalid'];?></td>
+					</tr>
+					<tr>
+						<td>First Name:</td>
+						<td><?php echo $TVAR['employee']['firstname'];?></td>
+					</tr>
+					<tr>
+						<td>Last Name:</td>
+						<td><?php echo $TVAR['employee']['lastname'];?></td>
+					</tr>
+					<tr>
+						<td>Present Address:</td>
+						<td><?php echo $TVAR['employee']['prsntaddress'];?></td>
+					</tr>
+					<tr>
+						<td>Permenent Address:</td>
+						<td><?php echo $TVAR['employee']['permaddress'];?></td>
+					</tr>
+					<tr>
+						<td>Contact No:</td>
+						<td><?php echo $TVAR['employee']['contactnos'];?></td>
+					</tr>
+					<tr>
+						<td>Department:</td>
+						<td><?php echo $Department->getTitle($TVAR['employee']['emp_id']);?></td>
+					</tr>
+					<tr>
+						<td>Job Title:</td>
+						<td><?php echo $Job->getTitle($TVAR['employee']['emp_id']);?></td>
+					</tr>
+					<tr>
+						<td>Supervisor:</td>
+						<td><?php //echo $TVAR['employee']['lastname'];?></td>
+					</tr>
+				</table>
+
+
+				<div class="control">
+					<form method="post" action="<?php echo HOST; ?>index.php?act=assign_supervision">
+						<input type="hidden" name="sup_id" value="" />
+						<input type="hidden" name="emp_id" value="<?php echo $TVAR['employee']['emp_id']; ?>" />
+						<input type="hidden" name="startdate" value="<?php echo date('Y-m-d'); ?>" />
+						<button class="button" value="Assign">Assign</button>
+					</form>
+				</div>
+
+			</div>
+
+			<div class="clearfix"></div>
+
+			<hr />
+
+		</div>
+
+	</div> <!-- /wrapper -->
+
+</body>
+</html>

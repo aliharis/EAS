@@ -1,0 +1,60 @@
+<?php require TEMPLATES_PATH . '_header.html'; ?>
+
+			<div class="sidebar">
+				<?php require TEMPLATES_PATH . 'admin/sidebar.html'; ?>
+			</div>
+
+			<div class="screen">
+				<ul class="mini_nav">
+					<li><a href="<?php echo HOST; ?>/index.php?act=assign_supervisor">Assign Supervisor</a></li>
+					<li><a href="<?php echo HOST; ?>/index.php?act=view_supervisors" class="active">View</a></li>
+				</ul>
+
+				<!--
+				<div class="search">
+					<form name="search" action="#" method="post">
+						<input type="text" name="search" />
+						<input type="submit" value="Search" />
+						<a href="<?php echo HOST; ?>index.php?act=view_employee" class="button radius5">All</a>
+					</form>
+				</div>
+				-->
+
+				<?php if (isset($_GET['msg'])): ?>
+				<div class="msg">
+					<?php echo $_GET['msg']; ?> [<a href="#" class="close_msg">close</a>]
+				</div>
+				<?php endif; ?>
+
+				<div class="list">
+					<form name="employee_list" method="post" action="<?php echo HOST; ?>index.php?act=remove_supervisor">
+					<table style="width: 600px!important;">
+						<tr style="font-weight: bold;">
+							<td>Employee Name</td>
+							<td width="175">Department</td>
+							<td width="80">Start Date</td>
+							<td width="50">&nbsp;</td>
+						</tr>
+						<?php foreach($TVAR['supervisors'] as $supervisor): extract($supervisor);?>
+						<tr>
+							<td><?php echo $firstname . ' ' . $lastname;?></td>
+							<td><?php echo $Department->getTitle($emp_id); ?></td>
+							<td><?php echo $Supervisor->getSupervisionStart($emp_id); ?></td>
+							<td></td>
+						</tr>
+						<?php endforeach;?>
+					</table>
+					</form>
+				</div>
+			</div>
+
+			<div class="clearfix"></div>
+
+			<hr />
+
+		</div>
+
+	</div> <!-- /wrapper -->
+
+</body>
+</html>

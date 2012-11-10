@@ -1,0 +1,63 @@
+<?php require TEMPLATES_PATH . '_header.html'; ?>
+
+			<div class="sidebar">
+				<?php require TEMPLATES_PATH . 'admin/sidebar.html'; ?>
+			</div>
+
+			<div class="screen">
+
+				<ul class="mini_nav">
+					<li><a href="<?php echo HOST; ?>/index.php?act=view_categories">View Categories</a></li>
+					<li><a href="<?php echo HOST; ?>/index.php?act=set_category_percentages" class="active">Set Category Percentages</a></li>
+				</ul>
+
+				<?php if (isset($_GET['msg'])): ?>
+				<div class="msg">
+					<?php echo $_GET['msg']; ?> [<a href="#" class="close_msg">close</a>]
+				</div>
+				<?php endif; ?>
+
+				<div class="clearfix"></div>
+
+				<form method="post" action="<?php echo HOST; ?>index.php?act=set_category_percentages">
+
+				<div class="clearfix"></div>
+
+				<table class="list_view" width="630">
+					<tr>
+						<th>
+							<span class="headline">Category Name</span>
+						</th>
+						<th width="100">Percentages</th>
+						<th width="100">&nbsp;</td>
+					</tr>
+					<?php foreach($TVAR['categories'] as $category): extract($category);?>
+					<tr>
+						<td>
+							<?php echo $catname; ?>
+						</td>
+						<td style="background: none;">
+							<input type="text" name="<?php echo $cat_id; ?>" value="<?php echo $percentallocated; ?>" />
+						</td>
+						<td></td>
+					</tr>
+					<?php endforeach; ?>
+				</table>
+
+				<div class="control">
+					<button class="button" name="cmd">Save</button>
+				</div>
+
+				</form>
+			</div>
+
+			<div class="clearfix"></div>
+
+			<hr />
+
+		</div>
+
+	</div> <!-- /wrapper -->
+
+</body>
+</html>

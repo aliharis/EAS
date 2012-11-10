@@ -1,0 +1,54 @@
+<?php require TEMPLATES_PATH . '_header.html'; ?>
+
+			<div class="sidebar">
+				<?php require TEMPLATES_PATH . 'admin/sidebar.html'; ?>
+			</div>
+
+			<div class="screen">
+				<ul class="mini_nav">
+					<li><a href="<?php echo HOST; ?>/index.php?act=assign_supervisor" class="active">Assign Supervisor</a></li>
+					<li><a href="<?php echo HOST; ?>/index.php?act=view_supervisors">View</a></li>
+				</ul>
+
+				<!--
+				<div class="search">
+					<form name="search" action="#" method="post">
+						<input type="text" name="search" />
+						<input type="submit" value="Search" />
+						<a href="<?php echo HOST; ?>index.php?act=view_employee" class="button radius5">All</a>
+					</form>
+				</div>
+				-->
+
+				<?php if (isset($_GET['msg'])): ?>
+				<div class="msg">
+					<?php echo $_GET['msg']; ?> [<a href="#" class="close_msg">close</a>]
+				</div>
+				<?php endif; ?>
+
+				<div class="select_emp">
+					<form name="view" action="index.php?act=view_assign_supervisor" method="post">
+						Employee: 
+						<select name="emp_id">
+							<?php foreach ($TVAR['employees'] as $employee): extract($employee); ?>
+							<option value="<?php echo $emp_id; ?>"><?php echo $firstname . " " . $lastname; ?> (<?php echo $Department->getTitle($emp_id);?>)</option>
+							<?php endforeach; ?>
+						</select>
+
+						<input type="submit" value="view" />
+					</form>
+				</div>
+
+
+			</div>
+
+			<div class="clearfix"></div>
+
+			<hr />
+
+		</div>
+
+	</div> <!-- /wrapper -->
+
+</body>
+</html>

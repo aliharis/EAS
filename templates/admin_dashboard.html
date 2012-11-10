@@ -1,0 +1,102 @@
+<?php require '_header.html'; ?>
+
+			<div class="sidebar">
+				<?php require TEMPLATES_PATH . 'admin/sidebar.html'; ?>
+			</div>
+
+			<div class="screen">
+				<ul class="mini_nav">
+					<li><a href="<?php echo HOST; ?>/index.php" class="active">Add Employee</a></li>
+					<li><a href="<?php echo HOST; ?>/index.php?act=view_employee">View Employee</a></li>
+				</ul>
+
+				<form name="addEmployee" method="post" action="<?php echo HOST;?>index.php?act=add_employee">
+				<table width="400" border="0">
+				  <tr>
+				    <td width="100">National ID:</td>
+				    <td width="206"><input type="text" name="data[nationalid]" required="required" class="styled_input radius5" /></td>
+				  </tr>
+				  <tr>
+				    <td width="100">First Name:</td>
+				    <td width="206"><input type="text" name="data[firstname]" class="styled_input radius5" /></td>
+				  </tr>
+				  <tr>
+				  	<td width="100">Middle Name:</td>
+				    <td width="206"><input type="text" name="data[middlename]" class="styled_input radius5" /></td>
+				  </tr>
+				  <tr>
+				  	<td width="100">Last Name:</td>
+				    <td width="206"><input type="text" name="data[lastname]" class="styled_input radius5" /></td>
+				  </tr>
+				  <tr>
+				    <td width="100">Gender:</td>
+				    <td width="206">
+				    	<select name="data[gender]">
+				    		<option value="F">Female</option>
+				    		<option value="M">Male</option>
+				    	</select>
+				    </td>
+				  </tr>
+				  <tr>
+				  	<td width="100">DOB:</td>
+				    <td width="206"><input type="text" name="data[dob]" class="styled_input radius5" /></td>
+				  </td>
+				  <tr>
+				    <td width="100">Contact No:</td>
+				    <td width="206"><input type="text" name="data[contactnos]" class="styled_input radius5" /></td>
+				  </tr>
+				  <tr>
+				    <td width="100">Present Address:</td>
+				    <td width="206"><input type="text" name="data[prsntaddress]" class="styled_input radius5" /></td>
+				  </tr>
+				  <tr>
+				  	<td width="100">Permenant Address:</td>
+				    <td width="206"><input type="text" name="data[permaddress]" class="styled_input radius5" /></td>
+				  </tr>
+				  <tr>
+				    <td width="100">Job Title:</td>
+				    <td width="206">
+				    	<select name="data[job_id]">
+				    		<?php foreach ($TVAR['jobs'] as $job):?>
+				    		<option value="<?php echo @$job['job_id']; ?>"><?php echo $job['jobtitle']; ?></option>
+				    		<?php endforeach; ?>
+				    	</select>
+				    </td>
+				  </tr>
+				  <tr>
+				  	<td width="100">Department:</td>
+				    <td width="206">
+				    	<select name="data[dept_id]">
+				    		<?php foreach ($TVAR['departments'] as $department):?>
+				    		<option value="<?php echo @$department['dept_id'];?>"><?php echo $department['deptname']; ?></option>
+				    		<?php endforeach; ?>
+				    	</select>				    	
+				    </td>
+				  </tr>
+				  <tr>
+				  	<td width="100">Supervisor:</td>
+				    <td width="206">
+				    	<select name="data[supervisor_id]">
+				    		<?php foreach ($TVAR['supervisors'] as $supervisor):?>
+				    		<option value="<?php echo @$supervisor['supervisor_id'];?>"><?php echo $supervisor['firstname'] ." ".  $supervisor['lastname']; ?></option>
+				    		<?php endforeach; ?>
+				    	</select>					    	
+				    </td>
+				  </tr>
+				  <tr>
+				  	<td colspan="4"><input type="submit" class="radius5 right" value="add" /></td>
+				  </tr>
+				</table>
+				</form>
+			</div>
+
+			<div class="clearfix"></div>
+
+			<hr />
+
+		</div>
+
+	</div> <!-- /wrapper -->
+
+</body>
+</html>

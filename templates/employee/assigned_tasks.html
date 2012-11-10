@@ -1,0 +1,41 @@
+<?php require TEMPLATES_PATH . '_header.html'; ?>
+
+			<div class="screen_full">
+				<ul class="mini_nav">
+					<li><a href="<?php echo HOST; ?>/index.php" class="active">Assigned Tasks</a></li>
+					<li><a href="<?php echo HOST; ?>/index.php?act=submitted_tasks">Submitted Tasks</a></li>
+					<li><a href="<?php echo HOST; ?>/index.php?act=performance">Performance</a></li>
+				</ul>
+			</div>
+
+			<div class="list_ext">
+
+				<table width="1300" class="employees_tbl extended_1">
+					<tr>
+						<th>Task Detail</th>
+						<th>Date Assigned</th>
+						<th>Due Date</th>
+						<th>Submit Task</th>
+					</tr>
+					<?php foreach($TVAR['tasks'] as $task): extract($task); ?>
+					<tr>
+						<td><?php echo $taskdetail;?></td>
+						<td width="150"><?php echo $assigneddate;?></td>
+						<td width="150"><?php echo $duedate;?></td>
+						<td width="150"><a href="<?php echo HOST;?>index.php?act=submit_task&task_id=<?php echo $task_id;?>">Submit</a></td>
+					</tr>
+					<?php endforeach; ?>
+				</table>
+
+			</div>
+
+			<div class="clearfix"></div>
+
+			<hr />
+
+		</div>
+
+	</div> <!-- /wrapper -->
+
+</body>
+</html>

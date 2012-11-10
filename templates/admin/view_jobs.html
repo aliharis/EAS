@@ -1,0 +1,64 @@
+<?php require TEMPLATES_PATH . '_header.html'; ?>
+
+			<div class="sidebar">
+				<?php require TEMPLATES_PATH . 'admin/sidebar.html'; ?>
+			</div>
+
+			<div class="screen">
+
+				<?php if (isset($_GET['msg'])): ?>
+				<div class="msg">
+					<?php echo $_GET['msg']; ?> [<a href="#" class="close_msg">close</a>]
+				</div>
+				<?php endif; ?>
+
+				<div class="clearfix"></div>
+
+				<form method="post" action="<?php echo HOST; ?>index.php?act=manage_job">
+
+				<div class="right">
+					<button class="button radius5" name="cmd" value="add">Add New</button>
+				</div>
+
+				<div class="clearfix"></div>
+
+				<table class="list_view" width="630">
+					<tr>
+						<th><span class="headline">Job Title</span></td>
+						<th><span class="headline">Job Description</span></td>
+					</tr>
+					<?php foreach($TVAR['jobs'] as $job): extract($job); ?>
+					<tr>
+						<td> 
+							<input type="checkbox" name="id[]" value="<?php echo $job_id; ?>">
+							<?php echo $jobtitle; ?>
+						</td>
+						<td>					
+							<?php echo $description; ?>
+						</td>
+					</tr>
+					<?php endforeach; ?>
+					<tr>
+						<td><input type="text" name="jobtitle" class="styled_input" style="width: 75%;" /></td>
+						<td><input type="text" name="description" class="styled_input" style="width: 75%;" /></td>
+					</td>
+				</table>
+
+				<div class="control">
+					<button class="button" name="cmd" value="edit">Edit</button>
+					<button class="button" name="cmd" value="delete">Delete</button>
+				</div>
+
+				</form>
+			</div>
+
+			<div class="clearfix"></div>
+
+			<hr />
+
+		</div>
+
+	</div> <!-- /wrapper -->
+
+</body>
+</html>

@@ -1,0 +1,145 @@
+<?php require TEMPLATES_PATH . '_header.html'; ?>
+
+			<div class="screen_full">
+				<ul class="mini_nav">
+					<li><a href="<?php echo HOST; ?>/index.php" class="active">Assign Tasks</a></li>
+					<li><a href="<?php echo HOST; ?>/index.php?act=performance">Performance</a></li>
+				</ul>
+
+				<div class="select_emp">
+					<form name="view" action="index.php?act=view_employee" method="post">
+						Employee: 
+						<select name="emp_id">
+							<?php foreach ($TVAR['employees'] as $employee): extract($employee); ?>
+							<option value="<?php echo $emp_id; ?>"><?php echo $firstname . " " . $lastname; ?></option>
+							<?php endforeach; ?>
+						</select>
+
+						<input type="submit" value="view" />
+					</form>
+				</div>
+			</div>
+
+			<div class="emp_details">
+				EMPID: <?php echo $TVAR['employee']['emp_id']; ?>
+				<span class="name"><?php echo $TVAR['employee']['firstname'] . " " . $TVAR['employee']['lastname']; ?></span>
+				<?php echo $Department->getTitle($TVAR['employee']['emp_id']); ?>
+			</div>
+
+			<div class="list_ext">
+
+				<table width="1300" class="employees_tbl">
+					<tr>
+						<th>Task Detail</th>
+						<th>Date Assigned</th>
+						<th>Due Date</th>
+						<th>Submitted Date</th>
+						<th>SubCat1</th>
+						<th>SubCat2</th>
+						<th>SubCat3</th>
+						<th>Remarks</th>
+						<th>Save Record</th>
+					</tr>
+					<?php foreach($TVAR['tasks'] as $task): extract($task);?>
+					<form method="post" action="index.php?act=edit_task">
+					<tr>
+						<td>
+							<input type="hidden" name="task_id" value="<?php echo $task_id; ?>" />
+							<input type="text" name="taskdetail" value="<?php echo $taskdetail;?>" ?>
+						</td>
+						<td><?php echo $assigneddate;?></td>
+						<td><?php echo $duedate; ?></td>
+						<td><?php if ($submitdate != "0000-00-00") echo $submitdate; ?></td>
+						<td>
+							<select name="subcat1" <?php if ($submitdate == "0000-00-00") echo 'style="display: none;"'; ?>>
+								<?php if ($submitdate == "0000-00-00") echo "<option>0</option>"; ?>
+								<option><?php echo $Task->getRating($task_id, 1); ?></option>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</option>
+						</td>
+						<td>
+							<select name="subcat2" <?php if ($submitdate == "0000-00-00") echo 'style="display: none;"'; ?>>
+								<?php if ($submitdate == "0000-00-00") echo "<option>0</option>"; ?>
+								<option><?php echo $Task->getRating($task_id, 2); ?></option>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</option>
+						</td>
+						<td>
+							<select name="subcat3" <?php if ($submitdate == "0000-00-00") echo 'style="display: none;"'; ?>>
+								<?php if ($submitdate == "0000-00-00") echo "<option>0</option>"; ?>
+								<option><?php echo $Task->getRating($task_id, 3); ?></option>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</option>
+						</td>
+						<td><input type="text" name="remarks" value="<?php echo $remarks; ?>" /></td>
+						<td><input type="submit" class="radius5 right" value="save" /></td>
+					</tr>
+					</form>
+					<?php endforeach;?>
+					<form method="post" action="index.php?act=add_task">
+					<tr>
+						<td width="150">
+							<input type="hidden" name="sup_id" value="<?php echo $TVAR['employee']['sup_id']; ?>" />
+							<input type="hidden" name="emp_id" value="<?php echo $TVAR['employee']['emp_id']; ?>" />
+							<input type="text" name="taskdetail" required="required" />
+						</td>
+						<td width="150"><input type="text" name="date_assigned" /></td>
+						<td width="150"><input type="text" name="due_date" /></td>
+						<td width="200">
+						</td>
+						<td width="75">
+							<select name="subcat1" style="display: none;">
+								<option>0</option>
+							</option>
+						</td>
+						<td width="75">
+							<select name="subcat2" style="display: none;">
+								<option>0</option>
+							</option>
+						</td>
+						<td width="75">
+							<select name="subcat3" style="display: none;">
+								<option>0</option>
+							</option>
+						</td>
+						<td width="125"><input type="text" name="remarks" /></td>
+						<td width="100"><input type="submit" class="radius5 right" value="save" /></td>
+					</tr>
+					</form>
+				</table>
+
+			</div>
+
+			<div class="right">
+				<img src="<?php echo HOST; ?>templates/images/rating.png" alt="" />
+			</div>
+
+			<p>
+				<strong>Note:</strong> <br />
+				- SubCat1: Amount of work completed <br />
+				- SubCat2: Quality of work completed <br />
+				- SubCat3: Degree of work completed within schedule/ time
+			</p>
+
+			<div class="clearfix"></div>
+
+			<hr />
+
+		</div>
+
+	</div> <!-- /wrapper -->
+
+</body>
+</html>

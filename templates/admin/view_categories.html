@@ -1,0 +1,167 @@
+<?php require TEMPLATES_PATH . '_header.html'; ?>
+
+			<div class="sidebar">
+				<?php require TEMPLATES_PATH . 'admin/sidebar.html'; ?>
+			</div>
+
+			<div class="screen">
+
+				<ul class="mini_nav">
+					<li><a href="<?php echo HOST; ?>/index.php?act=view_categories" class="active">View Categories</a></li>
+					<li><a href="<?php echo HOST; ?>/index.php?act=set_category_percentages">Set Category Percentages</a></li>
+				</ul>
+
+				<?php if (isset($_GET['msg'])): ?>
+				<div class="msg">
+					<?php echo $_GET['msg']; ?> [<a href="#" class="close_msg">close</a>]
+				</div>
+				<?php endif; ?>
+
+				<div class="clearfix"></div>
+
+				<form method="post" action="<?php echo HOST; ?>index.php?act=manage_categories">
+
+				<div class="clearfix"></div>
+
+				<h1 class="title">Category A: <?php echo $TVAR['CAT_A']; ?></h1>
+
+				<table class="list_view" width="630" id="CAT_A">
+					<tr>
+						<th>
+							<span class="headline">Description</span>
+							<div class="right">
+								<a href="#" onclick="addSubCategory('CAT A'); return false;" class="add_sub">Add Sub</a>
+							</div>
+						</th>
+					</tr>
+					<?php foreach($TVAR['SUB_CAT_A'] as $cat): extract($cat); ?>
+					<tr>
+						<td id="edit-<?php echo $subcat_id;?>"> 
+							<span class="right">
+								<a href="#" onclick="edit(<?php echo $subcat_id; ?>, '<?php echo $description; ?>', 'subcategories'); return false;"><img src="http://localhost/EAS/templates/images/icons/icon_edit.jpg" alt="Edit"></a>
+							</span>
+
+							<input type="checkbox" name="id[]" value="<?php echo $subcat_id; ?>" />
+							<?php echo $description; ?>
+						</td>
+					</tr>
+					<?php endforeach; ?>
+				</table>
+
+				<h1 class="title">Category B: <?php echo $TVAR['CAT_B']; ?></h1>
+
+				<table class="list_view" width="630" id="CAT_B">
+					<tr>
+						<th>
+							<span class="headline">Description</span>
+							<div class="right">
+								<a href="#" onclick="addSubCategory('CAT B'); return false;" class="add_sub">Add Sub</a>
+							</div>
+						</th>
+					</tr>
+					<?php foreach($TVAR['SUB_CAT_B'] as $cat): extract($cat); ?>
+					<tr>
+						<td id="<?php echo $subcat_id;?>"> 
+							<span class="right">
+								<a href="#" onclick="edit_category(<?php echo $subcat_id; ?>); return false;"><img src="http://localhost/EAS/templates/images/icons/icon_edit.jpg" alt="Edit"></a>
+							</span>
+
+							<input type="checkbox" name="id[]" value="<?php echo $subcat_id; ?>" />
+							<?php echo $description; ?> 
+						</td>
+					</tr>
+					<?php endforeach; ?>
+				</table>
+
+				<h1 class="title">Category C: <?php echo $TVAR['CAT_C']; ?></h1>
+
+				<table class="list_view" width="630" id="CAT_C">
+					<tr>
+						<th>
+							<span class="headline">Description</span>
+							<div class="right">
+								<a href="#" onclick="addSubCategory('CAT C'); return false;" class="add_sub">Add Sub</a>
+							</div>
+						</th>
+					</tr>
+					<?php foreach($TVAR['SUB_CAT_C'] as $cat): extract($cat); ?>
+					<tr>
+						<td id="<?php echo $subcat_id;?>"> 
+							<span class="right">
+								<a href="#" onclick="edit_category(<?php echo $subcat_id; ?>); return false;"><img src="http://localhost/EAS/templates/images/icons/icon_edit.jpg" alt="Edit"></a>
+							</span>
+
+							<input type="checkbox" name="id[]" value="<?php echo $subcat_id; ?>" />
+							<?php echo $description; ?>
+						</td>
+					</tr>
+					<?php endforeach; ?>
+				</table>
+
+				<h1 class="title">Category D: <?php echo $TVAR['CAT_D']; ?></h1>
+
+				<table class="list_view" width="630" id="CAT_D">
+					<tr>
+						<th>
+							<span class="headline">Description</span>
+							<div class="right">
+								<a href="#" onclick="addSubCategory('CAT D'); return false;" class="add_sub">Add Sub</a>
+							</div>
+						</th>
+					</tr>
+					<?php foreach($TVAR['SUB_CAT_D'] as $cat): extract($cat); ?>
+					<tr>
+						<td id="<?php echo $subcat_id;?>"> 
+							<span class="right">
+								<a href="#" onclick="edit_category(<?php echo $subcat_id; ?>); return false;"><img src="http://localhost/EAS/templates/images/icons/icon_edit.jpg" alt="Edit"></a>
+							</span>
+
+							<input type="checkbox" name="id[]" value="<?php echo $subcat_id; ?>" />
+							<span id="edit-<?php echo $cat_id; ?>"><?php echo $description; ?></span>
+						</td>
+					</tr>
+					<?php endforeach; ?>
+				</table>
+
+				<h1 class="title">Category E: <?php echo $TVAR['CAT_E']; ?></h1>
+
+				<table class="list_view" width="630" id="CAT_E">
+					<tr>
+						<th>
+							<span class="headline">Description</span>
+							<div class="right">
+								<a href="#" onclick="addSubCategory('CAT E'); return false;" class="add_sub">Add Sub</a>
+							</div>
+						</th>
+					</tr>
+					<?php foreach($TVAR['SUB_CAT_E'] as $cat): extract($cat); ?>
+					<tr>
+						<td id="<?php echo $subcat_id;?>"> 
+							<span class="right">
+								<a href="#" onclick="edit_category(<?php echo $subcat_id; ?>); return false;"><img src="http://localhost/EAS/templates/images/icons/icon_edit.jpg" alt="Edit"></a>
+							</span>
+
+							<input type="checkbox" name="id[]" value="<?php echo $subcat_id; ?>" />
+							<span id="edit-<?php echo $cat_id; ?>"><?php echo $description; ?></span>
+						</td>
+					</tr>
+					<?php endforeach; ?>
+				</table>
+
+				<div class="control">
+					<button class="button" name="cmd" value="delete">Delete</button>
+				</div>
+
+				</form>
+			</div>
+
+			<div class="clearfix"></div>
+
+			<hr />
+
+		</div>
+
+	</div> <!-- /wrapper -->
+
+</body>
+</html>

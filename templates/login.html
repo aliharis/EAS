@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Login &ndash; Employee Appraisal Software</title>
+	<link rel="stylesheet" href="<?php echo HOST;?>templates/stylesheets/app.css">
+	<script src="<?php echo HOST;?>templates/javascripts/app.js"></script>
+</head>
+<body>
+
+		<div id="login_box" class="radius10">
+			<div class="login_content">
+				<hgroup>
+					<h1>Employee Appraisal Software</h1>
+					<h2>Please Login</h2>
+				</hgroup>
+
+				<form name="login" id="login" method="post" action="<?php echo HOST;?>/users.php?act=login">
+					<label for="userID">User ID:</label>
+					<input type="text" name="username" class="radius5" />
+
+					<label for="password">Password:</label>
+					<input type="password" name="password" class="radius5" />
+
+					<input type="submit" value="Login" class="radius5" />
+				</form>
+			</div>
+		</div>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<?php require '_header.html'; ?>
+
+			<div class="sidebar">
+				<?php require TEMPLATES_PATH . 'admin/sidebar.html'; ?>
+			</div>
+
+			<div class="screen">
+				<ul class="mini_nav">
+					<li><a href="<?php echo HOST; ?>/index.php">Add Employee</a></li>
+					<li><a href="<?php echo HOST; ?>/index.php?act=view_employee" class="active">View Employee</a></li>
+				</ul>
+
+				<!--
+				<div class="search">
+					<form name="search" action="#" method="post">
+						<input type="text" name="search" />
+						<input type="submit" value="Search" />
+						<a href="<?php echo HOST; ?>index.php?act=view_employee" class="button radius5">All</a>
+					</form>
+				</div>
+				-->
+
+				<?php if (isset($_GET['msg'])): ?>
+				<div class="msg">
+					<?php echo $_GET['msg']; ?> [<a href="#" class="close_msg">close</a>]
+				</div>
+				<?php endif; ?>
+
+				<form name="employee_list" method="post" action="<?php echo HOST; ?>index.php?act=manage">
+
+				<div class="list">
+					<table>
+						<tr>
+							<td width="290">EmpID</td>
+							<td width="290">NatID No</td>
+							<td width="290">First Name</td>
+							<td width="290">Middle Name</td>
+							<td width="290">Last Name</td>
+							<td width="290">Supervisor</td>
+							<td width="290">Job Title</td>
+							<td width="290">Department</td>
+							<td width="290">Gender</td>
+							<td width="290">DOB</td>
+							<td width="290">Present Address</td>
+							<td width="290">Perm Address</td>
+						</tr>
+						<?php foreach ($TVAR['employees'] as $employee): extract($employee); ?>
+						<tr>
+							<td width="290">
+								<input type="checkbox" name="id[]" value="<?php echo $emp_id; ?>">
+								<?php echo $emp_id; ?>
+							</td>
+							<td width="290"><?php echo $nationalid; ?></td>
+							<td width="290"><?php echo $firstname; ?></td>
+							<td width="290"><?php echo $middlename; ?></td>
+							<td width="290"><?php echo $lastname; ?></td>
+							<td width="290"><?php echo $Supervisor->getName($sup_emp_id); ?></td>
+							<td width="310"><?php echo $Job->getTitle($emp_id); ?></td>
+							<td width="290"><?php echo $Department->getTitle($emp_id); ?></td>
+							<td width="290"><?php echo $gender; ?></td>
+							<td width="290"><?php echo $dob;?></td>
+							<td width="290"><?php echo $prsntaddress;?></td>
+							<td width="290"><?php echo $permaddress;?></td>
+						</tr>
+						<?php endforeach; ?>
+					</table>
+
+					<div class="control">
+						<button class="button" name="cmd" value="edit">Edit</button>
+						<button class="button" name="cmd" value="delete">Delete</button>
+					</div>
+
+					</form>
+				</div>
+			</div>
+
+			<div class="clearfix"></div>
+
+			<hr />
+
+		</div>
+
+	</div> <!-- /wrapper -->
+
+</body>
+</html>

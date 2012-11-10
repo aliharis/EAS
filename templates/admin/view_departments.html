@@ -1,0 +1,50 @@
+<?php require TEMPLATES_PATH . '_header.html'; ?>
+
+			<div class="sidebar">
+				<?php require TEMPLATES_PATH . 'admin/sidebar.html'; ?>
+			</div>
+
+			<div class="screen">
+
+				<?php if (isset($_GET['msg'])): ?>
+				<div class="msg">
+					<?php echo $_GET['msg']; ?> [<a href="#" class="close_msg">close</a>]
+				</div>
+				<?php endif; ?>
+
+				<div class="clearfix"></div>
+
+				<div class="right">
+					<a href="#" onclick="addColumn('department'); return false;" class="button radius5">Add New</a>
+				</div>
+
+				<div class="clearfix"></div>
+
+				<table class="list_view" width="630">
+					<tr>
+						<th><span class="headline">Department Name</span></td>
+					</tr>
+					<?php foreach($TVAR['departments'] as $department): extract($department); ?>
+					<tr>
+						<td> 
+							<span class="right">
+								<a href="#" onclick="edit(<?php echo $dept_id; ?>, '<?php echo $deptname; ?>'); return false;"><img src="<?php echo HOST; ?>templates/images/icons/icon_edit.jpg" alt="Edit" /></a>
+								<a href="<?php echo HOST; ?>index.php?act=delete&cmd=department&id=<?php echo $dept_id; ?>" onclick="if(confirm('Are you sure you want to delete this record?')) return true; else return false;"><img src="<?php echo HOST; ?>templates/images/icons/icon_delete.jpg" alt="Delete" /></a>
+							</span>
+							<span id="edit-<?php echo $dept_id; ?>"><?php echo $deptname; ?></span>
+						</td>
+					</tr>
+					<?php endforeach; ?>
+				</table>
+			</div>
+
+			<div class="clearfix"></div>
+
+			<hr />
+
+		</div>
+
+	</div> <!-- /wrapper -->
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<?php require TEMPLATES_PATH . '_header.html'; ?>
+
+			<div class="screen_full">
+				<ul class="mini_nav">
+					<li><a href="<?php echo HOST; ?>/index.php" class="active">Assign Tasks</a></li>
+					<li><a href="<?php echo HOST; ?>/index.php?act=performance">Performance</a></li>
+				</ul>
+
+				<?php if (isset($_GET['msg'])): ?>
+				<div class="msg">
+					<?php echo $_GET['msg']; ?> [<a href="#" class="close_msg">close</a>]
+				</div>
+				<?php endif; ?>
+
+				<div class="select_emp">
+					<form name="view" action="index.php?act=view_employee" method="post">
+						Employee: 
+						<select name="emp_id">
+							<?php foreach ($TVAR['employees'] as $employee): extract($employee); ?>
+							<option value="<?php echo $emp_id; ?>"><?php echo $firstname . " " . $lastname; ?> (<?php echo $Department->getTitle($emp_id);?>)</option>
+							<?php endforeach; ?>
+						</select>
+
+						<input type="submit" value="view" />
+					</form>
+				</div>
+			</div>
+
+			<div class="clearfix"></div>
+
+			<hr />
+
+		</div>
+
+	</div> <!-- /wrapper -->
+
+</body>
+</html>
